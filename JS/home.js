@@ -2,9 +2,11 @@
 
 
 const labels = (arr) =>{
-    const htmlElements =arr.map((el) => `<p class="badge font-medium text-[12px] bg-amber-500/70">${el}</p>`);
+    const htmlElements =arr.map((el) =>
+         `<p class="badge font-medium text-[12px] bg-amber-500/70">${el}</p>`);
   return htmlElements.join(" ");
 };
+
 
 const formatDate = (dateTime) => {
   const date = new Date(dateTime);
