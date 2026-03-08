@@ -1,5 +1,9 @@
 
 
+const allCardContainer = document.getElementById("card-container")
+const loading = document.getElementById("loading")
+
+let allCards = [];
 
 const labels = (arr) =>{
     const htmlElements =arr.map((el) =>
@@ -16,12 +20,6 @@ const formatDate = (dateTime) => {
 
 
 
-
-
-const allCardContainer = document.getElementById("card-container")
-const loading = document.getElementById("loading")
-
-let allCards = [];
 function showLoading() {
 
 loading.classList.remove("hidden");
@@ -31,6 +29,21 @@ allCardContainer.innerHTML = "";
 
 function hideLoading() {
 loading.classList.add("hidden");
+}
+
+function setActiveTab(btn){
+ 
+const allButtons = document.querySelectorAll("#filter-section button",);
+
+allButtons.forEach((btn) => {
+btn.classList.remove("btn-primary");
+btn.classList.add("btn-soft");
+console.log(btn)
+});
+
+btn.classList.add("btn-primary");
+btn.classList.remove("btn-soft");
+
 }
 
 
@@ -53,8 +66,6 @@ displayCards(allCards)
 
 
 
-
-
 function displayCards(cards) {
 
 allCardContainer.innerHTML = ""
@@ -64,7 +75,7 @@ cards.forEach(card => {
 const div =document.createElement("div");
 
 
-div.className = `flex flex-col  card  h-full   space-y-6 p-4 bg-white shadow  border-t-[5px] ${card.status === "open"
+div.className = `flex flex-col  card  h-full   space-y-6 p-4 bg-white shadow-xl  border-t-[5px] ${card.status === "open"
 ? "border-green-500 " : "border-purple-500 "} `
 
 
@@ -72,22 +83,22 @@ div.innerHTML = `
 
         <div class="flex justify-between items-center  ">
                 <img src="./assets/Open-Status.png" alt="">
-                <h3 class="badge  font-medium  ${card.priority == "high" ? "badge-secondary" : 
-                    card.priority === "medium" ?"badge-primary" :" badge-accent"  }
+                <h3 class="badge  font-medium text-gray-800 ${card.priority == "high" ? "badge-secondary" : 
+                    card.priority === "medium" ?"badge-info" :" badge-accent"  }
                 
                 
-                ">${card.priority}</h3>
+                ">${card.priority.toUpperCase()}</h3>
 
         </div>
 
           
           <div class=" ">
-            <h2 class="font-semibold">${card.title} </h2>
+            <h2 class="font-semibold ">${card.title} </h2>
             <p class="text-slate-500 text-sm line-clamp-2 pt-2">${card.description} </p>
              
           </div>
 
-          <div class="flex grow  gap-2  ">
+          <div class="  mb-5  my-auto gap-2  ">
            ${labels(card.labels)}
 
           </div>

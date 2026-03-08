@@ -37,42 +37,54 @@
         font-family: "Geist", sans-serif;
         
       }
+
+      .badge-secondary{
+        background-color: #FF8A8A;
+        
+      }
+
+      .badge-accent{
+        background-color: #79CED4;
+      }
+      .badge-info{
+        background-color: #62F97D;
+      }
     </style>
 
   </head>
 <body class="text-gray-800 bg-[#F8FAFC]  ">
 
-  <header class="bg-base-100">
-        <div class="navbar pl-13 pr-13    shadow-sm">
+  <header class="bg-base-100 relative  top-0">
+    <div class="navbar pl-13 pr-13    shadow-sm">
 
-  <div class="flex-1">
-    <div class="flex items-center gap-1">
-    <img class="w-[30px]" src="./assets/github-logo.png" alt="">
-    <a class=" font-bold text-xl">GitHub Issues Tracker</a>
-    </div>
+        <div class="flex-1">
+        <div class="flex items-center gap-1">
+        <img class="w-[30px]" src="./assets/github-logo.png" alt="">
+        <a class=" font-bold text-xl">GitHub Issues Tracker</a>
+       </div>
     
-  </div>
+     </div>
 
-  <div class="flex gap-2">
-    <input type="text"  placeholder= " Search issues..." class="input input-bordered w-24 md:w-auto" />
-      <div class=" flex text-center items-center">
+     <div class="flex gap-2">
+         <input type="text"  placeholder= " Search issues..." class="input input-bordered w-24 md:w-auto" />
+         <div class=" flex text-center items-center">
       
-       <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
+        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
        </div>
       
+       </div>
+     </div>
     </div>
-  </div>
-</div>
 
   </header>
 
-  <main class="w-[90%]  mx-auto space-y-5">
-    <section class="filter-section  space-x-2  mt-18 bg-white shadow p-6 rounded-sm">
+  <main class="w-[85%]  mx-auto space-y-5 ">
+    <section  id="filter-section" class=" space-x-2  mt-18 bg-white shadow p-6 rounded-sm">
 
-      <button id="all-btn" class="btn btn-primary">All</button>
+      <button id="all-btn" onclick="setActiveTab(this)"  class="btn btn-primary">All</button>
  
-      <button id="open-btn" class="btn btn-soft btn-primary">Open</button>
-      <button id="closed-btn" class="btn btn-soft btn-primary">Closed</button>
+      <button id="open-btn" onclick="setActiveTab(this)" class="btn btn-soft btn-primary">Open</button>
+      <button id="closed-btn" onclick="setActiveTab(this)" class="btn btn-soft btn-primary">Closed</button>
 
         
       
@@ -83,7 +95,7 @@
 
     <section id="all-section" class="shadow rounded ">
 
-      <div class="flex items-center justify-between p-6 bg-white shadow-md rounded-t-xl">
+      <div class="flex items-center justify-between p-5 bg-white shadow-md rounded-t-xl">
 
         <div class="flex items-center gap-2 ">
           <div class=" bg-[#ece4ff]  p-3 rounded-full">
@@ -93,7 +105,7 @@
 
           <div>
                <h2 class="font-semibold text-xl "><span id="Issues-count"></span> Issues</h2>
-              <p class="text-slate-500">Track and manage your project issues</p>
+              <p class="text-slate-500  text-sm">Track and manage your project issues</p>
           </div>
 
         </div>
@@ -105,7 +117,7 @@
 
       </div>
 
-      <div id="card-container" class="bg-[#FBFBFB]  border-t border-t-stone-500/30  p-6 grid grid-cols-4 gap-5">
+      <div id="card-container" class="bg-[#FBFBFB]  border-t border-t-stone-500/30  p-6 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5">
         
 
         <!-- <div class="card space-y-5 p-4 bg-amber-50 shadow-2xl ">
