@@ -54,10 +54,10 @@
   </head>
 <body class="text-gray-800 bg-[#F8FAFC]  ">
 
-  <header class="bg-base-100 relative  top-0">
-    <div class="navbar pl-13 pr-13    shadow-sm">
+  <header class="bg-base-100  ">
+    <div class="navbar pl-13 pr-13   space-y-4 sm:flex justify-between  shadow-sm  ">
 
-        <div class="flex-1">
+        <div class="flex gap-1  ">
         <div class="flex items-center gap-1">
         <img class="w-[30px]" src="./assets/github-logo.png" alt="">
         <a class=" font-bold text-xl">GitHub Issues Tracker</a>
@@ -65,7 +65,7 @@
     
      </div>
 
-     <div class="flex gap-2">
+     <div class=" flex gap-2 ">
          <input type="text"  placeholder= " Search issues..." class="input input-bordered w-24 md:w-auto" />
          <div class=" flex text-center items-center">
       
@@ -78,8 +78,8 @@
 
   </header>
 
-  <main class="w-[85%]  mx-auto space-y-5 ">
-    <section  id="filter-section" class=" space-x-2  mt-18 bg-white shadow p-6 rounded-sm">
+  <main class="w-[85%]  mx-auto space-y-5  ">
+    <section  id="filter-section" class=" space-x-2 flex-wrap   mt-18 bg-white shadow p-6 rounded-sm ">
 
       <button id="all-btn" onclick="setActiveTab(this)"  class="btn btn-primary">All</button>
  
@@ -168,6 +168,52 @@
      
     </section>
 
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_5.showModal()">open modal</button>
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box space-y-5">
+      <div>
+          <h2 class="font-bold text-xl">Fix broken image uploads</h2>
+
+          <div class=" flex gap-2 justify-start text-center text-[12px] pt-1">
+             <p class=" bg-amber-300 p-1 pl-2 pr-2  rounded-full">status</p>
+             <p class="text-slate-500 p-1">Opened by Fahim Ahmed</p>
+             <p class="text-slate-500 p-1">createdAts</p>
+      
+        
+          </div>
+      
+      </div>
+
+      <div>
+        <span>labels</span>
+      </div>
+
+      <div class="text-sm text-slate-500 ">
+       <p>description</p>
+
+      </div>
+       <div class="border-t border-t-stone-500/30 pt-4 flex justify-start gap-45 items-center" >
+              <div class="flex  justify-start flex-col items-center">
+                <p class="text-slate-500 text-sm ">Assignee:</p>
+                 <p class="font-semibold">name</p>
+              </div>
+    
+            <div class="flex justify-start flex-col items-center">
+               <p class="text-slate-500 text-sm ">Priority:</p>
+               <p class="text-center   rounded-xl">High</p>
+            </div>
+           
+          </div>
+
+      <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-soft btn-primary">Close</button>
+      </form>
+       </div>
+  </div>
+</dialog>
 
 
 
