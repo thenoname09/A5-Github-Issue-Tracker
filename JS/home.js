@@ -18,46 +18,54 @@ const formatDate = (dateTime) => {
 
 
 
+const allCardContainer = document.getElementById("card-container")
+const loading = document.getElementById("loading")
+
+let allCards = [];
+function showLoading() {
+
+loading.classList.remove("hidden");
+
+allCardContainer.innerHTML = "";
+}
+
+function hideLoading() {
+loading.classList.add("hidden");
+}
 
 
-
-
-
-const cardContainer = document.getElementById("card-container")
 
 async function loadIssues(){
 
+showLoading()
 const res= await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
 const data = await res.json()
 
-        
-displayCards(data.data)
+hideLoading()
+
+allCards =  data.data
+const IssuesCount = document.getElementById("Issues-count");
+IssuesCount.innerText = allCards.length;
+
+displayCards(allCards)
 }
+
+
+
+
 
 
 function displayCards(cards) {
 
+allCardContainer.innerHTML = ""
 cards.forEach(card => {
 
 
 const div =document.createElement("div");
 
-// "id": 1,
-// "title": "Fix navigation menu on mobile devices",
-// "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-// "status": "open",
-// "labels": [2 items],
-// "priority": "high",
-// "author": "john_doe",
-// "assignee": "jane_smith",
-// "createdAt": "2024-01-15T10:30:00Z",
-// "updatedAt": "2024-01-15T10:30:00Z"
-// },
 
 div.className = `flex flex-col  card  h-full   space-y-6 p-4 bg-white shadow  border-t-[5px] ${card.status === "open"
 ? "border-green-500 " : "border-purple-500 "} `
-
-
 
 
 div.innerHTML = `
@@ -99,25 +107,45 @@ div.innerHTML = `
              </div>
           
 
-
-        
-
-        
-
-
-
-
-
-
-
-
-
 `
-cardContainer.appendChild(div)
+allCardContainer.appendChild(div)
 
 });
 
 }
+
+
+// card counts
+document.getElementById("all-btn").addEventListener("click", function () {
+
+const IssuesCount = document.getElementById("Issues-count");
+IssuesCount.innerText = allCards.length;
+
+displayCards(allCards);
+
+});
+
+
+document.getElementById("open-btn").addEventListener("click", function () {
+const openCards = allCards.filter(card => card.status === "open");
+
+const IssuesCount = document.getElementById("Issues-count")
+IssuesCount.innerText = openCards.length
+displayCards(openCards)
+
+
+});
+
+document.getElementById("closed-btn").addEventListener("click", function () {
+  
+const closedCards = allCards.filter(card => card.status === "closed");
+ const IssuesCount = document.getElementById("Issues-count")
+IssuesCount.innerText = closedCards.length
+
+displayCards(closedCards )
+
+});
+
 
 
 loadIssues();
