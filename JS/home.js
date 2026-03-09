@@ -49,7 +49,7 @@ allButtons.forEach((btn) => {
 
 btn.classList.remove("btn-primary");
 btn.classList.add("btn-soft");
-console.log(btn)
+
 
 });
 
@@ -68,7 +68,7 @@ const data = await res.json()
 
 hideLoading()
 
-allCards =  data.data
+ allCards =  data.data
 const IssuesCount = document.getElementById("Issues-count");
 IssuesCount.innerText = allCards.length;
 
@@ -105,8 +105,8 @@ div.innerHTML = `
 
           
           <div class=" ">
-            <h2 class="font-semibold " onClick="issueCardOpen(${card.id})">${card.title} </h2>
-            <p class="text-slate-500 text-sm line-clamp-2 pt-2">${card.description} </p>
+            <h2 class="font-semibold cursor-pointer " onClick="issueCardOpen(${card.id})">${card.title} </h2>
+            <p class="text-slate-500 text-sm line-clamp-2 pt-2 cursor-pointer" onClick="issueCardOpen(${card.id})" >${card.description} </p>
              
           </div>
 
@@ -178,8 +178,8 @@ async function issueCardOpen(cardid){
 
   const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${cardid}`)
   const data = await res.json()
-  cardInfo = data.data
-    console.log(cardInfo, "data")
+  const cardInfo = data.data
+    
 
 issueCardModal.showModal()
 // const details =document.getElementById("modal-d")
@@ -206,7 +206,31 @@ modalStatus.classList.add(cardInfo.status == "open" ? "bg-green-600" : "bg-purpl
 }
 
 
+const searchInput = document.getElementById("input-Search")
 
+searchInput.addEventListener("input", async ()=>{
+
+ const searchValue = searchInput.value.toLowerCase().trim()
+console.log(searchValue)
+
+if(!searchValue){
+return loadIssues()
+
+}
+
+ setActiveTab(document.getElementById("all-btn"))
+const res= await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+
+const data = await res.json();
+
+ const IssuesCount = document.getElementById("Issues-count")
+IssuesCount.innerText = data.data.length
+
+
+displayCards(data.data)
+}
+
+)
 
 
 
